@@ -1,61 +1,52 @@
+# Практическое занятие №1. Введение, основы работы в командной строке
+
 
 ## Задача 1
+```cut -d: -f1 /etc/passwd |sort```
 
-Вывести отсортированный в алфавитном порядке список имен пользователей в файле passwd (вам понадобится grep).
-
-Решение:
-```
-grep -o '^[^:]*' /etc/passwd | sort
-```
-
+![pic/1.png](pic/1.png)
 
 ## Задача 2
+```awk '{print $2, $1}' /etc/protocols | sort -k1,1nr | head -n 5```
 
-Вывести данные /etc/protocols в отформатированном и отсортированном порядке для 5 наибольших портов, как показано в примере ниже:
-
-```
-[root@localhost etc]# cat /etc/protocols ...
-142 rohc
-141 wesp
-140 shim6
-139 hip
-138 manet
-```
-
-Решение:
-```
-cat /etc/protocols | awk '{print $2, $1}' | sort -nr | head -n 5
-```
+![pic/2.png](pic/2.png)
 
 ## Задача 3
-
-Написать программу banner средствами bash для вывода текстов, как в следующем примере (размер баннера должен меняться!):
-
-```
-[root@localhost ~]# ./banner "Hello from RTU MIREA!"
-+-----------------------+
-| Hello from RTU MIREA! |
-+-----------------------+
-```
-
-Перед отправкой решения проверьте его в ShellCheck на предупреждения.
-
-Решение:
 ```
 #!/bin/bash
-text=$1
-size=${#text}
-echo -n "+"
-for ((i = -2; i < size; i++))
-do
-echo -n "-"
-done
-echo "+"
+
+if [ $# -eq 0 ]; then
+    echo "Использование: $0 \"Ваш текст\""
+    exit 1
+fi
+
+text="$1"
+
+length=${#text}
+
+border=$(printf "%0.s-" $(seq 1 $((length + 2))))
+
+border="+$border+"
+
+echo "$border"
 echo "| $text |"
-echo -n "+"
-for ((i = -2; i < size; i++))
-do
-echo -n "-"
-done
-echo "+"
+echo "$border"
+```            
+
+![pic/3.png](pic/3.png)
+
+## Задача 4
 ```
+grep -oE '\b[a-zA-Z_][a-zA-Z0-9_]*\b' test.c | grep -vE '\b(int|void|return|if|else|for|while|include|stdio)\b' | sort | uniq
+```
+
+![pic/4.png](pic/4.png)
+
+## Задача 5
+```
+chmod +x reg
+sudo cp $1 /usr/local/bin
+```
+
+![pic/5.png](pic/5.png)
+
