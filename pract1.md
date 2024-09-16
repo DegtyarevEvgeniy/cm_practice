@@ -74,7 +74,7 @@ chmod +x find_duplicates.sh
 python3 archiver.py /Users/piebo/Documents/cdr.log
 ```
 
-![pic/8.png](pic/8.ppg)
+![pic/8.png](pic/8.png)
 
 ## Задача 9
 ```
@@ -82,7 +82,7 @@ cd code
 python3 replace.py /Users/piebo/Desktop/ConfigUpr/1Pract/trash/8.txt 8out.txt
 ```
 
-![pic/9.png](pic/9.ppg)
+![pic/9.png](pic/9.png)
 
 ## Задача 10
 ```
@@ -90,4 +90,4 @@ cd code
 python dirR.py /Users/piebo/Desktop
 ```
 
-![pic/10.png](pic/10.ppg)
+![pic/10.png](pic/10.png)
